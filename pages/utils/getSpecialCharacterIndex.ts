@@ -1,14 +1,12 @@
 export default function getSpecialCharacterIndex(str: string, charList: string[]) {
   const words = str.split(' ');
-  console.log(words[9])
     const indexes = words.reduce((acc, word, index) => {
-      if (word.endsWith(charList[0])) {
+      if (charList.find(char => word.includes(char))) {
         return [...acc, index];
       }
 
       return acc;
     }, [] as number[]);
-    console.log(indexes)
-    return indexes
-}
 
+    return indexes;
+}

@@ -36,7 +36,6 @@ export default function PlayerProvider({ children }: Props) {
   );
 
   const nextWorld = () => {
-    console.log('NEXT');
     setCurrentPosition((oldState) => oldState + 1);
   };
 
@@ -67,20 +66,6 @@ export default function PlayerProvider({ children }: Props) {
     } else {
       clearInterval(timer);
     }
-
-    // if (isPlaying && indexes.includes(currentPosition)) {
-    //   const timerPeriod = setInterval(
-    //     () => setCurrentPosition((oldState) => oldState + 1),
-    //     9500,
-    //   );
-    // } else {
-    //   if (isPlaying) {
-    //     const timer = setInterval(
-    //       () => setCurrentPosition((oldState) => oldState + 1),
-    //       500,
-    //     );
-    //   }
-    // }
   }, [isPlaying, currentPosition]);
 
   const handlePlayAndPause = () => {
