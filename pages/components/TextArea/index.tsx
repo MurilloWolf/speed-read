@@ -6,8 +6,18 @@ export default function TextArea() {
 
   return (
     <div>
-      <form>
+      <form className="p-4">
         <textarea
+          className="
+            rounded-sm
+            focus:border-transparent 
+            outline-none 
+            text-sm
+            text-slate-300
+            bg-elevation-2 
+            p-4 w-96 h-96
+            resize-none
+          "
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setText(e.target.value)
           }

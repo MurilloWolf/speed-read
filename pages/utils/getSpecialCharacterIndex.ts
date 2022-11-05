@@ -1,6 +1,5 @@
-export default function getSpecialCharacterIndex(str: string, charList: string[]) {
-  const words = str.split(' ');
-    const indexes = words.reduce((acc, word, index) => {
+export default function getSpecialCharacterIndex(wordsList: string[], charList: string[]) {
+    const indexes = wordsList.reduce((acc, word, index) => {
       if (charList.find(char => word.includes(char))) {
         return [...acc, index];
       }

@@ -10,6 +10,7 @@ module.exports = {
       colors:{
         base: '#0B0B0C',
         "elevation-1": '#121212',
+        "elevation-2": '#151515'
       }
     },
   },

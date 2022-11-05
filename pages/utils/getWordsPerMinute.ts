@@ -1,20 +1,3 @@
-
-/*
-Minuto = 60s
-Palavras/Min = Mili
-
-5 = 2500
-
-60000/120 = 500
-*/
-
-
-/**
- *  60.000
- *  10 , => 2500
- *  10 . => 4500 
- *  total = 7000
- */
 export function getMiliSec(text : string, wordPerMinute: number){
   const [commas, periods] = getWordsPerMinute(text);
 
