@@ -6,14 +6,14 @@ import {
   useEffect,
 } from 'react';
 import getSpecialCharacterIndex from '../utils/getSpecialCharacterIndex';
-
+import { getWordsPerMinute, getMiliSec } from '../utils/getWordsPerMinute';
 interface Props {
   children: ReactElement;
 }
 
 export const PlayerContext = createContext({
   text: '',
-  setText: () => {},
+  setText: (string: string) => {},
   isPlaying: false,
   handlePlayAndPause: () => {},
   array: [],
@@ -35,12 +35,14 @@ export default function PlayerProvider({ children }: Props) {
     [ipsum],
   );
 
+  getMiliSec(ipsum, 120);
+
   const nextWorld = () => {
     setCurrentPosition((oldState) => oldState + 1);
   };
 
   const newInterval = (especial: boolean) => {
-    const defaultTime = 100;
+    const defaultTime = getMiliSec(ipsum, 120);
     const charTimer = {
       '.': 450,
       ',': 250,

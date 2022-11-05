@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
+import { PlayerContext } from '../../context/Player';
 
 export default function TextArea() {
-  const [text, setText] = useState('');
-
-  const handleChangeText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value);
-  };
+  const { text, setText } = useContext(PlayerContext);
 
   return (
     <div>
       <form>
-        <textarea onChange={handleChangeText} value={text} />
+        <textarea
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            setText(e.target.value)
+          }
+          value={text}
+        />
       </form>
     </div>
   );
