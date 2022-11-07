@@ -8,6 +8,7 @@ export default function StartButton() {
         className="
           bg-blue-700
           hover:bg-blue-800 
+          hover:text-slate-200
           w-18 h-12 px-4 
           rounded-sm
           text-slate-50
