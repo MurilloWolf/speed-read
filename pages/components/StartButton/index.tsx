@@ -6,6 +6,7 @@ export default function StartButton() {
     <div>
       <button
         className="
+          mt-10
           bg-blue-700
           hover:bg-blue-800 
           hover:text-slate-200

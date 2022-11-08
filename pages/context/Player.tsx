@@ -6,7 +6,7 @@ import {
   useEffect,
 } from 'react';
 import getSpecialCharacterIndex from '../utils/getSpecialCharacterIndex';
-import { getWordsPerMinute, getMiliSec } from '../utils/getWordsPerMinute';
+import { getMiliSec } from '../utils/getWordsPerMinute';
 interface Props {
   children: ReactElement;
 }
@@ -15,9 +15,9 @@ export const PlayerContext = createContext({
   text: '',
   setText: (string: string) => {},
   isPlaying: false,
+  textArray: [],
   handlePlayAndPause: () => {},
   handleStart: () => {},
-  array: [],
   currentPosition: 0,
 });
 
@@ -36,10 +36,12 @@ export default function PlayerProvider({ children }: Props) {
     [textArray],
   );
 
-  getMiliSec(text, 120);
-
   const nextWorld = () => {
     setCurrentPosition((oldState) => oldState + 1);
+  };
+  const reset = () => {
+    setIsPlaying(false);
+    setCurrentPosition(0);
   };
 
   const newInterval = (especial: boolean) => {
@@ -51,7 +53,10 @@ export default function PlayerProvider({ children }: Props) {
     };
 
     const currentWord = textArray[currentPosition];
-    const lastChar = currentWord[currentWord.length - 1];
+    const lastChar =
+      !!currentWord && currentWord.length > 0
+        ? currentWord[currentWord.length - 1]
+        : currentWord[0];
     clearInterval(timer);
 
     return setInterval(
@@ -63,15 +68,13 @@ export default function PlayerProvider({ children }: Props) {
   };
 
   useEffect(() => {
-    if (isPlaying) {
-      if (text) {
+    if (isPlaying && text) {
+      if (currentPosition < textArray.length) {
         const isSpecialChar = indexes.includes(currentPosition);
         const newTimer = newInterval(isSpecialChar);
         setTimer(newTimer);
-      }
-    } else {
-      clearInterval(timer);
-    }
+      } else reset();
+    } else clearInterval(timer);
   }, [isPlaying, currentPosition]);
 
   const handlePlayAndPause = () => {
@@ -90,11 +93,13 @@ export default function PlayerProvider({ children }: Props) {
       handlePlayAndPause,
       handleStart,
       textArray,
+      isPlaying,
       currentPosition,
     }),
     [
       text,
       setText,
+      isPlaying,
       handlePlayAndPause,
       handleStart,
       textArray,

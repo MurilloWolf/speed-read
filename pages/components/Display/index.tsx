@@ -1,21 +1,19 @@
 import { useContext } from 'react';
 import { PlayerContext } from '../../context/Player';
+import VideoController from '../VideoController';
 
 export default function Display() {
-  const { handlePlayAndPause, isPlaying, array, currentPosition } =
-    useContext(PlayerContext);
+  const { textArray, currentPosition } = useContext(PlayerContext);
+
   return (
-    <div>
-      <div className="w-64 h-64 bg-elevation-1 flex justify-center items-center">
-        <h3 className="text-2xl text-gray-300">{array[currentPosition]}</h3>
+    <div className="w-full flex flex-col justify-center items-center mt-4">
+      <div className="h-96 p-4  md:w-4/6 w-full  bg-elevation-2 flex justify-center items-center">
+        <h3 className="text-4xl text-gray-300 text-center">
+          {textArray[currentPosition]}
+        </h3>
       </div>
-      <button
-        className="bg-gray-400 hover:bg-gray-500 w-16 h-12 text-slate-200"
-        type="button"
-        onClick={handlePlayAndPause}
-      >
-        {isPlaying ? 'PAUSE' : `PLAY`}
-      </button>
+      <VideoController />
     </div>
   );
 }
+// w-64 h-64 bg-elevation-1 flex justify-center items-center
