@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import React, { useContext } from 'react';
-import { Display, TextArea, VideoController } from './components';
-import Header from './components/Header';
-import StartButton from './components/StartButton';
-import WordsPerMinuteInput from './components/WordsPerMinuteInput';
-import { PlayerContext } from './context/Player';
+import { Display, TextArea } from '../components';
+import Header from '../components/Header';
+import WordsPerMinuteInput from '../components/WordsPerMinuteInput';
+import { PlayerContext } from '../context/Player';
 
 export default function Home() {
   const { isPlaying } = useContext(PlayerContext);
