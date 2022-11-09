@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { Display, TextArea, VideoController } from './components';
 import Header from './components/Header';
 import StartButton from './components/StartButton';
+import WordsPerMinuteInput from './components/WordsPerMinuteInput';
 import { PlayerContext } from './context/Player';
 
 export default function Home() {
@@ -18,7 +19,16 @@ export default function Home() {
       <Header />
       <main className="w-full flex items-center justify-center flex-col h-full bg-base">
         <h1 className="text-2xl text-gray-200">SpeedRead</h1>
-        {!isPlaying ? <TextArea /> : <Display />}
+        {
+          !isPlaying ? (
+            <>
+              <TextArea />
+              <WordsPerMinuteInput />
+            </>
+          ) : (
+            <Display />
+          )
+        }
       </main>
       <footer className="w-full py-12 h-12 bg-elevation-1 flex flex-1 justify-center items-center">
         <a

@@ -19,6 +19,8 @@ export const PlayerContext = createContext({
   handlePlayAndPause: () => {},
   handleStart: () => {},
   currentPosition: 0,
+  wordsPerMinute: 300,
+  setWordsPerMinute: (number: number) => {},
 });
 
 export default function PlayerProvider({ children }: Props) {
@@ -30,6 +32,7 @@ export default function PlayerProvider({ children }: Props) {
   const [timer, setTimer] = useState<NodeJS.Timer | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentPosition, setCurrentPosition] = useState(0);
+  const [wordsPerMinute, setWordsPerMinute] = useState(300);
 
   const indexes = useMemo(
     () => getSpecialCharacterIndex(textArray, [',', '.']),
@@ -45,7 +48,7 @@ export default function PlayerProvider({ children }: Props) {
   };
 
   const newInterval = (especial: boolean) => {
-    const defaultTime = getMiliSec(text, 120);
+    const defaultTime = getMiliSec(text, wordsPerMinute);
     const charTimer = {
       '.': 450,
       ',': 250,
@@ -95,6 +98,8 @@ export default function PlayerProvider({ children }: Props) {
       textArray,
       isPlaying,
       currentPosition,
+      wordsPerMinute,
+      setWordsPerMinute
     }),
     [
       text,
@@ -104,6 +109,7 @@ export default function PlayerProvider({ children }: Props) {
       handleStart,
       textArray,
       currentPosition,
+      wordsPerMinute,
     ],
   );
 
